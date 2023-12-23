@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="Resources/style.css" rel="stylesheet" />
     <title>Portfolio Ilias Drysdale</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Header section -->
@@ -22,37 +28,66 @@
         <h2>Projects include: Web design & Web development</h2>
         <h2>Using HTML, CSS & Javascript</h2>
         <p>By Ilias Drysdale</p>
-        <button>Contact</button>
+        <a class="button" href="contact.html">Contact</a>
       </section>
-      <!-- Breadcrumb & Dark/ light mode toggle section-->
-      <section class="breadrumb">
-        <p>Breadcrumb and toggle (building)</p>
-      </section>
+      <!-- Dark/ light mode toggle section-->
       <!-- Project section -->
-      <section class="project">
-        <p>Breadcrumb</p>
-        <h2>Project title</h2>
+      <section class="project" id="project1">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Back to start</a></li>
+          <li class="breadcrumb-item"><a href="#project1">project 1</a></li>
+        </ol>
+
+        <h2>Project Overview: Message Generator</h2>
+        <p class="title-description">
+          <strong>Core Technology:</strong> JavaScript
+        </p>
         <div class="spacebetween">
           <div class="project-description">
-            <h3>Project sub title</h3>
+            <h3>Purpose and Learning Outcome</h3>
             <p>
-              The Message Generator Project, utilizing JavaScript, is a concise
-              yet impactful learning venture designed to enhance skills in
-              utilizing GitHub and Git. In this minimalistic project, a message
-              generator has been crafted which skillfully extracts three random
-              data elements from a predefined array to compose an inspiring
-              message. The array, messageContent, contains motivational phrases
-              like 'Work as hard as you can' and 'Don't give up'. To ensure the
-              uniqueness of each message, the project employs a set,
-              usedIndices, to track and avoid repetition of the indices. The
-              core functionality hinges on a random number generator, which
-              randomly selects indices from the array. The generator loops
-              through this process three times, each time verifying the novelty
-              of the index, thereby guaranteeing a fresh and unique message
-              composition. The final output, an amalgamation of three distinct
-              motivational sentences, is then elegantly displayed, symbolizing a
-              simple yet effective use of basic JavaScript constructs in a
-              practical application
+              <strong>Objective:</strong> To enhance skills in utilizing GitHub
+              and Git through a practical JavaScript project.
+            </p>
+            <p>
+              <strong>Scope:</strong> A minimalistic yet impactful project
+              focusing on message generation.
+            </p>
+
+            <h3>Project Details</h3>
+            <p><strong>Feature: </strong>Random Message Generator.</p>
+            <p>
+              <strong>Data Structure: </strong>An array named messageContent
+              containing motivational phrases such as 'Work as hard as you can'
+              and 'Don't give up'.
+            </p>
+
+            <h3>Implementation Mechanics</h3>
+            <p>
+              <strong>Uniqueness Mechanism: </strong>Utilizes a set called
+              usedIndices to track and avoid repetition of array indices.
+            </p>
+            <p>
+              <strong>Core Function: </strong>A random number generator selects
+              indices from messageContent.
+            </p>
+            <p>
+              <strong>Process Flow: </strong>Iterates three times to ensure each
+              index is unique, producing a fresh message each iteration.
+            </p>
+
+            <h3>Final Output</h3>
+            <p>
+              <strong>Composition: </strong>An amalgamation of three distinct
+              motivational sentences.
+            </p>
+            <p>
+              <strong>Representation: </strong>Demonstrates effective use of
+              basic JavaScript constructs in a practical application.
+            </p>
+            <p>
+              <strong>Display: </strong>The final inspiring message is elegantly
+              presented to the user.
             </p>
           </div>
           <div class="project-img">

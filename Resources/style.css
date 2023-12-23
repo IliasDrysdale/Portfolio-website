@@ -1,8 +1,26 @@
+:root {
+    /* Light Theme Colors */
+    --light-primary: #f0f0f0; /* Primary background color */
+    --light-secondary: #ffffff; /* Secondary background, e.g., cards, modals */
+    --light-accent: #4caf50; /* Accent color for buttons, links */
+    --light-section-bg: #e8e8e8; /* Background color for sections */
+    --light-text-primary: #333333; /* Primary text color */
+    --light-text-secondary: #555555; /* Secondary text color */
 
+    /* Dark Theme Colors */
+    --dark-primary: #212121; /* Primary background color */
+    --dark-secondary: #424242; /* Secondary background, e.g., cards, modals */
+    --dark-accent: #9c27b0; /* Accent color for buttons, links */
+    --dark-section-bg: #383838; /* Background color for sections */
+    --dark-text-primary: #e0e0e0; /* Primary text color */
+    --dark-text-secondary: #bdbdbd; /* Secondary text color */
+}
 
 
 body {
-    background-color: beige;
+    background-color: var(--light-primary);
+    color: var(--light-text-primary);
+    font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -18,12 +36,47 @@ nav {
     justify-content: space-between;
 }
 
+.button {
+    border: 2px solid black;
+    background-color: var(--light-secondary);
+    color: var(--light-accent);
+    padding: 10px;
+    padding-right: 25px;
+    padding-left: 25px;
+    border-radius: 10px;   
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: var(--dark-secondary);
+    color: var(--dark-text-secondary);
+}
+
+.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: var(--light-secondary);
+    width: fit-content;
+}
+
+.breadcrumb-item {
+    display: inline;
+}
+
+.breadcrumb li+li::before {
+    padding: 8px;
+    color: black;
+    content: ">>";
+}
+
 .banner {
     height: 400px;
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--light-section-bg);
 }
 
 .banner h1 {
@@ -31,14 +84,22 @@ nav {
 }
 
 .project {
-    height: 400px;
     margin-left: 100px;
     margin-right: 100px;
     padding-left: 100px;
     padding-right: 100px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-bottom: 200px;
+    margin-top: 100px;
+    background-color: var(--light-section-bg);
 }
 
-.project  h2{
+.project  h2 {
+    text-align: center;
+}
+
+.title-description {
     text-align: center;
 }
 
@@ -49,8 +110,8 @@ nav {
 }
 
 .project-img {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -65,4 +126,10 @@ nav {
 
 .project-description {
     max-width: 600px;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
