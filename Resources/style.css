@@ -133,3 +133,16 @@ nav {
     align-items: center;
     flex-direction: column;
 }
+
+.colortoggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toggle {
+    border: 2px solid black;
+    padding: 5px;
+    margin-top: 25px;
+    cursor: pointer;
+}
