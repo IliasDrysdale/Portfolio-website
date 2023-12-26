@@ -83,6 +83,10 @@ nav {
     font-size: 32px;
 }
 
+.banner h2 {
+    text-align: center;
+}
+
 .project {
     margin-left: 100px;
     margin-right: 100px;
@@ -95,7 +99,7 @@ nav {
     background-color: var(--light-section-bg);
 }
 
-.project  h2 {
+.project h2 {
     text-align: center;
 }
 
@@ -145,4 +149,70 @@ nav {
     padding: 5px;
     margin-top: 25px;
     cursor: pointer;
+}
+
+/* Media Queries */
+/* Tablet Size */
+@media only screen and (max-width: 768px) {
+    .project .spacebetween {
+        justify-content: center;
+        flex-direction: column;
+    }
+    .project-img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .project h3 {
+        font-size: 16px;
+    }
+
+    .project p {
+        font-size: 15px;
+    }
+
+    .project-description {
+        margin-bottom: 15px;
+    }
+}
+
+/* Mobile Size */
+@media only screen and (max-width: 480px) {
+    h1 {
+        font-size: 22px; /* smaller than typical h1 size */
+    }
+    h2 {
+        font-size: 20px; /* smaller than typical h2 size */
+    }
+    h3 {
+        font-size: 18px; /* smaller than typical h3 size */
+    }
+    h4 {
+        font-size: 16px; /* smaller than typical h4 size */
+    }
+    h5 {
+        font-size: 14px; /* smaller than typical h5 size */
+    }
+    h6 {
+        font-size: 12px; /* smaller than typical h6 size */
+    }
+    p {
+        font-size: 14px; /* smaller than the original 16px */
+    }
+
+    .project {
+        margin-left: 50px;
+        margin-right: 50px;
+        padding-left: 3ch;
+        padding-right: 30px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        margin-bottom: 100px;
+        margin-top: 100px;
+        background-color: var(--light-section-bg);
+    }
+
+    .breadcrumb a {
+        font-size: 14px;
+    }
 }
