@@ -5,44 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countdown Timer</title>
     <style>
-        .countdown {
-            font-size: 24px;
+        body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .countdown-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .countdown-section {
             text-align: center;
+        }
+
+        .countdown-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <div class="countdown" id="countdown"></div>
+    <div class="countdown-container">
+        <div class="countdown-timer" id="countdown">
+            <div class="countdown-section">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-section">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-section">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-section">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Function to calculate and update the countdown
-        function updateCountdown() {
-            // Set the target date
-            var targetDate = new Date("May 26, 2024 00:00:00").getTime();
+        // Set the countdown date
+        var countdownDate = new Date("May 26, 2024 00:00:00").getTime();
 
-            // Get the current date and time
+        // Update the countdown every second
+        var countdownFunction = setInterval(function() {
             var now = new Date().getTime();
+            var distance = countdownDate - now;
 
-            // Calculate the time remaining
-            var distance = targetDate - now;
-
-            // Calculate days, hours, minutes, and seconds
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Display the countdown
-            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
+            document.getElementById("days").innerHTML = formatTime(days);
+            document.getElementById("hours").innerHTML = formatTime(hours);
+            document.getElementById("minutes").innerHTML = formatTime(minutes);
+            document.getElementById("seconds").innerHTML = formatTime(seconds);
 
-            // Update the countdown every second
-            setTimeout(updateCountdown, 1000);
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+
+        // Function to format time with leading zeros
+        function formatTime(time) {
+            return time < 10 ? "0" + time : time;
         }
-
-        // Initial call to update the countdown
-        updateCountdown();
     </script>
 </body>
 </html>
