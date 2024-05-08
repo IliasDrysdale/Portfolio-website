@@ -42,88 +42,88 @@
     </div>
 
     <script>
-    // Set the countdown date
-    var countdownDate = new Date("May 26, 2024 00:00:00").getTime();
+        // Set the countdown date
+        var countdownDate = new Date("May 26, 2024 00:00:00").getTime();
 
-    // Define variables for frame capture
-    var frames = []; // Array to store captured frames
-    var frameInterval = 1000; // Interval between frames in milliseconds
-    var frameCount = 60; // Total number of frames to capture
-    var currentFrame = 0; // Current frame index
+        // Define variables for frame capture
+        var frames = []; // Array to store captured frames
+        var frameInterval = 1000; // Interval between frames in milliseconds
+        var frameCount = 60; // Total number of frames to capture
+        var currentFrame = 0; // Current frame index
 
-    // Function to capture frame immediately
-    function captureFramesImmediately() {
-        // Capture the appearance of the countdown timer
-        var frame = document.getElementById("countdown").cloneNode(true);
+        // Function to capture frame immediately
+        function captureFramesImmediately() {
+            // Capture the appearance of the countdown timer
+            var frame = document.getElementById("countdown").cloneNode(true);
 
-        // Add the captured frame to the array
-        frames.push(frame);
+            // Add the captured frame to the array
+            frames.push(frame);
 
-        // If all frames have been captured, generate GIF
-        if (frames.length >= frameCount) {
-            generateGIF(frames);
+            // If all frames have been captured, generate GIF
+            if (frames.length >= frameCount) {
+                generateGIF(frames);
+            }
         }
-    }
 
-    // Capture frames immediately when the page loads
-    captureFramesImmediately();
+        // Capture frames immediately when the page loads
+        captureFramesImmediately();
 
-    // Function to generate GIF from captured frames
-    function generateGIF(frames) {
-        // Initialize GIF generator
-        var gif = new GIF({
-            workers: 2,
-            quality: 10
-        });
+        // Function to generate GIF from captured frames
+        function generateGIF(frames) {
+            // Initialize GIF generator
+            var gif = new GIF({
+                workers: 2,
+                quality: 10
+            });
 
-        // Add frames to GIF
-        frames.forEach(function(frame) {
-            gif.addFrame(frame, { delay: frameInterval });
-        });
+            // Add frames to GIF
+            frames.forEach(function(frame) {
+                gif.addFrame(frame, { delay: frameInterval });
+            });
 
-        // Render GIF
-        gif.on('finished', function(blob) {
-            // Create a temporary URL for the GIF
-            var url = URL.createObjectURL(blob);
+            // Render GIF
+            gif.on('finished', function(blob) {
+                // Create a temporary URL for the GIF
+                var url = URL.createObjectURL(blob);
 
-            // Create a link to download the GIF
-            var link = document.createElement('a');
-            link.href = url;
-            link.download = 'countdown.gif';
-            link.innerHTML = 'Download GIF'; // Change the text if needed
-            document.body.appendChild(link);
-        });
+                // Create a link to download the GIF
+                var link = document.createElement('a');
+                link.href = url;
+                link.download = 'countdown.gif';
+                link.innerHTML = 'Download GIF'; // Change the text if needed
+                document.body.appendChild(link);
+            });
 
-        // Start rendering GIF
-        gif.render();
-    }
-
-    // Function to format time with leading zeros
-    function formatTime(time) {
-        return time < 10 ? "0" + time : time;
-    }
-
-    // Update the countdown every second
-    var countdownFunction = setInterval(function() {
-        var now = new Date().getTime();
-        var distance = countdownDate - now;
-
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById("days").innerHTML = formatTime(days);
-        document.getElementById("hours").innerHTML = formatTime(hours);
-        document.getElementById("minutes").innerHTML = formatTime(minutes);
-        document.getElementById("seconds").innerHTML = formatTime(seconds);
-
-        // If the countdown is over, display a message
-        if (distance < 0) {
-            clearInterval(countdownFunction);
-            document.getElementById("countdown").innerHTML = "EXPIRED";
+            // Start rendering GIF
+            gif.render();
         }
-    }, 1000);
-</script>
+
+        // Function to format time with leading zeros
+        function formatTime(time) {
+            return time < 10 ? "0" + time : time;
+        }
+
+        // Update the countdown every second
+        var countdownFunction = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countdownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = formatTime(days);
+            document.getElementById("hours").innerHTML = formatTime(hours);
+            document.getElementById("minutes").innerHTML = formatTime(minutes);
+            document.getElementById("seconds").innerHTML = formatTime(seconds);
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
