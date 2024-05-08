@@ -51,26 +51,22 @@
         var frameCount = 60; // Total number of frames to capture
         var currentFrame = 0; // Current frame index
 
-        // Function to capture frame
-        function captureFrame() {
+        // Function to capture frame immediately
+        function captureFramesImmediately() {
             // Capture the appearance of the countdown timer
             var frame = document.getElementById("countdown").cloneNode(true);
 
             // Add the captured frame to the array
             frames.push(frame);
 
-            // Increment frame index
-            currentFrame++;
-
-            // If all frames have been captured, stop capturing
-            if (currentFrame >= frameCount) {
-                clearInterval(captureInterval);
-                generateGIF(frames); // Proceed to generate GIF from captured frames
+            // If all frames have been captured, generate GIF
+            if (frames.length >= frameCount) {
+                generateGIF(frames);
             }
         }
 
-        // Start capturing frames at regular intervals
-        var captureInterval = setInterval(captureFrame, frameInterval);
+        // Capture frames immediately when the page loads
+        captureFramesImmediately();
 
         // Function to generate GIF from captured frames
         function generateGIF(frames) {
