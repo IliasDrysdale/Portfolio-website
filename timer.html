@@ -89,13 +89,13 @@
             gif.on('finished', function(blob) {
                 // Create a temporary URL for the GIF
                 var url = URL.createObjectURL(blob);
-                
-                // Display the generated GIF (optional)
-                var img = document.createElement('img');
-                img.src = url;
-                document.body.appendChild(img);
 
-                // Now, you can host the generated GIF on your server or use it directly in your Mailchimp email campaign
+                // Create a link to download the GIF
+                var link = document.createElement('a');
+                link.href = url;
+                link.download = 'countdown.gif';
+                link.innerHTML = 'Download GIF'; // Change the text if needed
+                document.body.appendChild(link);
             });
 
             // Start rendering GIF
