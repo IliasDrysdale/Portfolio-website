@@ -3,33 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown Timer</title>
+    <title>Countdown Timer GIF</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
         .countdown-container {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+            text-align: center;
         }
 
         .countdown-timer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .countdown-section {
-            text-align: center;
+            display: inline-block;
         }
 
         .countdown-number {
@@ -43,32 +25,87 @@
             color: #666;
         }
     </style>
+    <script src="gif.js"></script>
 </head>
 <body>
     <div class="countdown-container">
         <div class="countdown-timer" id="countdown">
-            <div class="countdown-section">
-                <div class="countdown-number" id="days">00</div>
-                <div class="countdown-label">Days</div>
-            </div>
-            <div class="countdown-section">
-                <div class="countdown-number" id="hours">00</div>
-                <div class="countdown-label">Hours</div>
-            </div>
-            <div class="countdown-section">
-                <div class="countdown-number" id="minutes">00</div>
-                <div class="countdown-label">Minutes</div>
-            </div>
-            <div class="countdown-section">
-                <div class="countdown-number" id="seconds">00</div>
-                <div class="countdown-label">Seconds</div>
-            </div>
+            <div class="countdown-number" id="days">00</div>
+            <div class="countdown-label">Days</div>
+            <div class="countdown-number" id="hours">00</div>
+            <div class="countdown-label">Hours</div>
+            <div class="countdown-number" id="minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+            <div class="countdown-number" id="seconds">00</div>
+            <div class="countdown-label">Seconds</div>
         </div>
     </div>
 
     <script>
         // Set the countdown date
         var countdownDate = new Date("May 26, 2024 00:00:00").getTime();
+
+        // Define variables for frame capture
+        var frames = []; // Array to store captured frames
+        var frameInterval = 1000; // Interval between frames in milliseconds
+        var frameCount = 60; // Total number of frames to capture
+        var currentFrame = 0; // Current frame index
+
+        // Function to capture frame
+        function captureFrame() {
+            // Capture the appearance of the countdown timer (e.g., take screenshot or clone HTML elements)
+            var frame = document.getElementById("countdown").cloneNode(true);
+
+            // Add the captured frame to the array
+            frames.push(frame);
+
+            // Increment frame index
+            currentFrame++;
+
+            // If all frames have been captured, stop capturing
+            if (currentFrame >= frameCount) {
+                clearInterval(captureInterval);
+                generateGIF(frames); // Proceed to generate GIF from captured frames
+            }
+        }
+
+        // Start capturing frames at regular intervals
+        var captureInterval = setInterval(captureFrame, frameInterval);
+
+        // Function to generate GIF from captured frames
+        function generateGIF(frames) {
+            // Initialize GIF generator
+            var gif = new GIF({
+                workers: 2,
+                quality: 10
+            });
+
+            // Add frames to GIF
+            frames.forEach(function(frame) {
+                gif.addFrame(frame, { delay: frameInterval });
+            });
+
+            // Render GIF
+            gif.on('finished', function(blob) {
+                // Create a temporary URL for the GIF
+                var url = URL.createObjectURL(blob);
+                
+                // Display the generated GIF (optional)
+                var img = document.createElement('img');
+                img.src = url;
+                document.body.appendChild(img);
+
+                // Now, you can host the generated GIF on your server or use it directly in your Mailchimp email campaign
+            });
+
+            // Start rendering GIF
+            gif.render();
+        }
+
+        // Function to format time with leading zeros
+        function formatTime(time) {
+            return time < 10 ? "0" + time : time;
+        }
 
         // Update the countdown every second
         var countdownFunction = setInterval(function() {
@@ -91,11 +128,6 @@
                 document.getElementById("countdown").innerHTML = "EXPIRED";
             }
         }, 1000);
-
-        // Function to format time with leading zeros
-        function formatTime(time) {
-            return time < 10 ? "0" + time : time;
-        }
     </script>
 </body>
 </html>
